@@ -27,7 +27,7 @@ nessedata<-read.table("Neisseria_meningiditis_data.csv",sep=",",header = T)
 
 #Saving the data objects:
 setwd(paste(defdir,"IntegrateProject/data/Rdata",sep="/"))
-save(bifidodata,file = "Bifidobacterium.Rdata")
-save(bordetedata,file = "Bordetella.Rdata")
-save(bacterodata,file = "Bacteroides.Rdata")
-save(nessedata,file = "Neisseria.Rdata")
+save(bifidodata,file = "Bifidobacterium.RData")
+save(bordetedata,file = "Bordetella.RData")
+save(bacterodata,file = "Bacteroides.RData")
+save(nessedata,file = "Neisseria.RData")

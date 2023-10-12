@@ -15,7 +15,8 @@ source("SampleSelection.R")
 #Marshall Code. Generate a sample file that ca be further used for retrieving data via bash script in the VSC cluster.
 setwd(paste(defdir,"IntegrateProject/data/Rdata",sep="/"))
 #Bordetella Example
-data1=qualityFilter(bordetedata,3)
+load("Bordetella.RData")
+data1=qualityFilterAuthors(bordetedata,3)
 smallSampleSelection(data1,defdir,"50sample.txt")
-largeSampleSelection(data1,defdir,"700sample.txt")
+largeSampleSelection(data1,defdir,"500sample.txt")
                 

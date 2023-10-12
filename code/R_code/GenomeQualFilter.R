@@ -3,7 +3,8 @@
 # Any further improvement to the optimality of the data preprocessing should imply modifying this file.
 #Marshall code: Part 1
 library(dplyr)
-qualityFilter<- function(data,sigm){
+#Authors filtering method
+qualityFilterAuthors<- function(data,sigm){
 #Calculate the median number of contigs
 median_contigs <- median(data$Contigs)
 
@@ -24,5 +25,59 @@ filtered_data <- data %>%
          (Genome.Status == "WGS" & Contigs <= median_contigs * 2.5))
   )
 return(filtered_data)
+}
+#Evaluating the effect of the 3 sigma statistical approach for trimming the data without considering the median
+qualityFilter3Sigma<- function(data,sigm){
+  #Calculate the median number of contigs
+  median_contigs <- median(data$Contigs)
+  
+  #Calculate the mean and standard deviation of the number of CDS
+  mean_cds <- mean(data$CDS)
+  sd_cds <- sd(data$CDS)
+  
+  #Calculate the mean and standard deviation of the size
+  mean_size <- mean(data$Size)
+  sd_size <- sd(data$Size)
+  
+  #Filter the data based on the specified conditions
+  filtered_data <- data %>%
+    filter(
+      (CDS >= mean_cds - sigm * sd_cds & CDS <= mean_cds + sigm * sd_cds) &
+        (Size >= mean_size - sigm * sd_size & Size <= mean_size + sigm * sd_size) &
+        (Genome.Status == "Complete" |
+           (Genome.Status == "WGS"))
+    )
+  return(filtered_data)
+}
+#These methods looks to define a better statistical approach to filter based on the median.
+#Following the same assumptions of normality
+#Under upper limit. No lower limit because you can get a contig of 1 if you used Nanopore or long sequencing reads technologies.
+#How to work under normal assumptions for a median.
+#https://www.statology.org/confidence-interval-for-median/
+
+qualityFilterProposed<- function(data,sigm){
+  #Calculate the median number of contigs
+  median_contigs <- median(data$Contigs)
+  n=nrow(data)
+  
+  #Calculate the mean and standard deviation of the number of CDS
+  mean_cds <- mean(data$CDS)
+  sd_cds <- sd(data$CDS)
+  
+  #Calculate the mean and standard deviation of the size
+  mean_size <- mean(data$Size)
+  sd_size <- sd(data$Size)
+  
+  #Filter the data based on the specified conditions
+  filtered_data <- data %>%
+    filter(
+      (CDS >= mean_cds - sigm * sd_cds & CDS <= mean_cds + sigm * sd_cds) &
+        (Size >= mean_size - sigm * sd_size & Size <= mean_size + sigm * sd_size) &
+        (Genome.Status == "Complete" |
+           #based on: https://www.statology.org/confidence-interval-for-median/
+           #adapted to one side confidence interval for the contigs feature.
+           (Genome.Status == "WGS" & Contigs <=(n*0.5)+2.5*sqrt( n*0.5*(1-0.5))))
+    )
+  return(filtered_data)
 }
 
