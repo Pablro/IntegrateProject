@@ -14,15 +14,9 @@ while read line; do  wget -qN $(echo $line| tr -d '\"') -P ./bartonella-50sample
 </code>
 ### Untangle description
 **PUT ATTENTION TO BOLD NOTES FROM HERE ON**
-
 <code>while read line; do  wget -qN $(echo $line| tr -d '\"')</code> 
-
 This code reads line by line and get rid of double quotation that can cause some trouble when  using wget.
-
 <code>-P ./bartonella-50sampleData ;</code>
-
-**download it in a desired directory previously created**(directory name *bartonella-50sampleData*). 
-
+**download it in a desired directory previously created**(directory name *bartonella-50sampleData*, change it to your will for storing your species fasta files). 
 <code>barto50.txt</code>
-
 **is the input file modify it accordingly.**
