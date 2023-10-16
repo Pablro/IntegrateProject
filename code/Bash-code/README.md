@@ -21,3 +21,6 @@ This code reads line by line and get rid of double quotation that can cause some
 **download it in a desired directory previously created**(directory name *bartonella-50sampleData*, change it to your will for storing your species fasta files). 
 <code>barto50.txt</code>
 **is the input file modify it accordingly.**
+
+IF YOU FIND ANY PROBLEM WITH MY SCRIPTS YOU ARE FREE TO CORRECT IT OR CONTACT ME FOR FURTHER INFORMATION.
+Pablo
