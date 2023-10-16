@@ -12,10 +12,10 @@ Understanding the bash script
 <code>
 while read line; do  wget -qN $(echo $line| tr -d '\"') -P ./bartonella-50sampleData ; done < barto50.txt
 </code>
-## Untangle description
+### Untangle description
 **PUT ATTENTION TO BOLD NOTES FROM HERE ON**
 
-<code>while read line; do  wget -qN $(echo $line| tr -d '\"')<code> 
+<code>while read line; do  wget -qN $(echo $line| tr -d '\"')</code> 
 
 This code reads line by line and get rid of double quotation that can cause some trouble when  using wget.
 
