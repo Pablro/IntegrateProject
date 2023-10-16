@@ -9,7 +9,12 @@ dos2unix inputfile.txt
 [error info](https://stackoverflow.com/questions/22236197/how-to-remove-0d-from-end-of-url-when-using-wget)
 ### Last step
 Understanding the bash script
-```
+<code>
 while read line; do  wget -qN $(echo $line| tr -d '\"') -P ./bartonella-50sampleData ; done < barto50.txt
-```
-<code>while read line; do  wget -qN $(echo $line| tr -d '\"')<code> This code reads line by line and get rid of double quotation that can cause some trouble when  using wget. <code>-P ./bartonella-50sampleData ;<code>  **download it in a desired directory previously created**(directory name *bartonella-50sampleData*). <code>barto50.txt<code> **is the input file modify it accordingly.**
+<code>
+<code>while read line; do  wget -qN $(echo $line| tr -d '\"')<code> 
+This code reads line by line and get rid of double quotation that can cause some trouble when  using wget.
+<code>-P ./bartonella-50sampleData ;<code>  
+**download it in a desired directory previously created**(directory name *bartonella-50sampleData*). 
+<code>barto50.txt<code> 
+**is the input file modify it accordingly.**
