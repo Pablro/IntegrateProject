@@ -4,17 +4,25 @@
 #the default global working directory in R is in format user/name/Documents
 #you can read more about this here: https://statisticsglobe.com/change-default-working-directory-r
 #Remember the default directory in your machines. Later processes start from this point.
+getwd()
+#Copy the previous result to the setwd() augrement like next line for example
+setwd("/Users/marshall/Documents/2ndYear")
+#Then we set the current working dir to "/Users/marshall/Documents/2ndYear" in my case and assign this to defdir as parent dir
 defdir=getwd()
-#The directory where th source code are:
-sourdir=paste(defdir,"IntegrateProject/code/R_code",sep="/")
 #Collect the source code from respective directory on your machines.
+#Assign sourdir as one child dir, remember to maker sure "IntegrateProject/code/R_code" is right after the path defidr
+sourdir=paste(defdir,"IntegrateProject/code/R_code",sep="/")
+# setwd to child dir to make sure source() functions work
 setwd(sourdir)
 source("GenomeQualFilter.R")
 source("SampleSelection.R")
 
 #Marshall Code. Generate a sample file that ca be further used for retrieving data via bash script in the VSC cluster.
+# set correct current working dir
 setwd(paste(defdir,"IntegrateProject/data/Rdata",sep="/"))
 #Bordetella Example
+getwd()
+# GO to R_code and run LoadingRData.R mannually 
 load("Bordetella.RData")
 data1=qualityFilterAuthors(bordetedata,3)
 smallSampleSelection(data1,defdir,"50sample.txt")

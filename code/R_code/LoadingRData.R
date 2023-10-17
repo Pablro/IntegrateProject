@@ -6,9 +6,9 @@
 #Relevant Note: In this way you can access the RDATA whenever you need it.
 #Loading RData
 #Remember the default directory in your machines. Later processes start from this point.
-defdir=getwd()
 
-
+#This is my case, remember to update to your work directory structure
+defdir="/Users/marshall/Documents/2ndYear"
 #Creating the data.
 setwd(paste(defdir,"IntegrateProject/data/bv-brc-data",sep="/"))
 #Original species
@@ -31,3 +31,4 @@ save(bifidodata,file = "Bifidobacterium.RData")
 save(bordetedata,file = "Bordetella.RData")
 save(bacterodata,file = "Bacteroides.RData")
 save(nessedata,file = "Neisseria.RData")
+#Now go back to DataCollection.R
