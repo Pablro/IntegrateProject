@@ -7,7 +7,7 @@ dos2unix inputfile.txt
 ```
 *Note*: The reason behind this is that we have to correct for some text file formatting related to your OS (Mac or windows). For more information read about **dos2unix** command. The error that in my case I was addressing was a carrriage return problem(%0D in specific) for more information you can check this link: 
 [error info](https://stackoverflow.com/questions/22236197/how-to-remove-0d-from-end-of-url-when-using-wget)
-##Downloading the fasta files
+## Downloading the fasta files
 ### Last step
 Understanding the bash script
 <code>
