@@ -20,7 +20,7 @@ defdir=getwd()
 #Assign sourdir as one child dir, remember to maker sure "IntegrateProject/code/R_code" is right after the path defidr
 #>>>>>>> Stashed changes
 sourdir=paste(defdir,"IntegrateProject/code/R_code",sep="/")
-=======
+#=======
 getwd()
 #Copy the previous result to the setwd() augrement like next line for example
 setwd("/Users/marshall/Documents/2ndYear")
