@@ -16,14 +16,14 @@ setwd(paste(defdir,"IntegrateProject/data/bv-brc-data",sep="/"))
 bifidodata<- read.table("Bifidobacterium_longum.csv",sep=",",header = T)
 
 #Bordetella pertussis 
-bordetedata<-read.table("Bordetella pertussis.csv",sep=",",header = T)
+bordetedata<-read.table("Bordetella_pertussis.csv",sep=",",header = T)
 
 #Proposed species
 #Bacteroides fragilis
 bacterodata<-read.table("Bacteroides_fragilis_data.csv",sep=",",header = T)
 
 #Neisseria Meningiditis
-nessedata<-read.table("Neisseria_meningiditis_data.csv",sep=",",header = T)
+nessedata<-read.table("Neisseria_meningitidis_data.csv",sep=",",header = T)
 
 #Saving the data objects:
 setwd(paste(defdir,"IntegrateProject/data/Rdata",sep="/"))
