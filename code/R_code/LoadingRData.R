@@ -18,7 +18,7 @@ setwd(paste(defdir,"IntegrateProject/data/bv-brc-data",sep="/"))
 #Bacteroides fragilis
 bacterodata<-read.table("Bacteroides_fragilis_data.csv",sep=",",header = T)
 
-#Neisseria Meningiditis
+#Neisseria Meningitidis
 nessedata<-read.table("Neisseria_meningitidis_data.csv",sep=",",header = T)
 
 #Saving the data objects:
