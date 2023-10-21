@@ -8,8 +8,8 @@
 # This file creates the RData objects from csv files
 
 #Loading RData
-#Remember the default directory in your machines. Later processes start from this point.
-defdir=getwd()
+#This is my case, remember to update to your work directory structure
+defdir="/Users/marshall/Documents/2ndYear"
 
 #Creating the data.
 setwd(paste(defdir,"IntegrateProject/data/bv-brc-data",sep="/"))
