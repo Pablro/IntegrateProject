@@ -3,6 +3,8 @@
 # Any further improvement to the optimality of the data preprocessing should imply modifying this file.
 #Marshall code: Part 1
 library(dplyr)
+#Filter for genomes which are public(can be downloaded their fasta)
+
 #Authors filtering method
 qualityFilterAuthors<- function(data,sigm){
 #Calculate the median number of contigs
