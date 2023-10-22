@@ -4,15 +4,15 @@
 #the default global working directory in R is in format user/name/Documents
 #you can read more about this here: https://statisticsglobe.com/change-default-working-directory-r
 #Relevant Note: For the sample size sampling design, this file should be modify.
-#For modifying the sample input into the bash script for the Data download this file should also need 
+#For modifying the sample input format that goes to the bash script for the Data download or the bash script of missing fastas, this file should also need 
 #to be modify.
 
 #Marshall Code part 2
 #Small Dataset sampling method
 #parameters:
 #filtered data previously generated
-#working direcctory- default working directory where the github repository should be find.
-#filename- the user specifies the file names (Distiguish two short datasets from different species).
+#working direcctory- default working directory.
+#filename- the user specifies the file names.
 smallSampleSelection<-function(filtered_data,working_directory,filename){
   setwd(working_directory)
   # Randomly select 50 observations
@@ -26,23 +26,26 @@ smallSampleSelection<-function(filtered_data,working_directory,filename){
 }
 #Large Dataset sampling method
 #Note: If sample size  it is too large an  error will occur. The possibility of decreasing the size
-#of the large data set is relevant. An visualizing the effect in  the preprocessing exploration would be interesting.
+#of the large data set is relevant. 
 #parameters:
 #filtered data previously generated
-#working direcctory- default working directory where the github repository should be find.
-#filename- the user specifies the file names (Distiguish two short datasets from different species).
+#working direcctory- default working directory.
+#filename- the user specifies the file names.
 largeSampleSelection<-function(filtered_data,working_directory,filename){
   setwd(working_directory)
-  # Randomly select 500 observations
+  # Randomly select 400 observations
   set.seed(123)
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
-  large_random_sample <- filtered_data[sample(nrow(filtered_data), 500), ]
+  large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
   for (i in 1:length(large_random_sample)){
     large_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample[i],sep="/"),large_random_sample[i],sep="/"),"fna",sep = ".")
   }
   write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
-
+#parameters:
+#totaldata- the whole dataset to revised for missing fasta.
+#working direcctory- default working directory.
+#filename- the user specifies the file names.
 #this will pass the whole dataset for filtering the missing fastas in Unix
 completedDatasetUnbalanceId<-function(totaldata,working_directory,filename){
   setwd(working_directory)
