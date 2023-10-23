@@ -41,5 +41,7 @@ Run the `code/R_code/DataCollection.R`. Make sure to adjust the directories and 
 ## 5. Download the fasta files
 
 ```bash
+dos2unix InputFile.txt
+
 while read line; do  wget -qN $(echo $line| tr -d '\"') -P ./OutputDirectory ; done < InputFile.txt
 ```
