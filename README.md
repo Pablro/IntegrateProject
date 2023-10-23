@@ -40,6 +40,8 @@ Run the `code/R_code/DataCollection.R`. Make sure to adjust the directories and 
 
 ## 5. Download the fasta files
 
+Make sure to change the output directory for every input file. 
+
 ```bash
 dos2unix InputFile.txt
 
