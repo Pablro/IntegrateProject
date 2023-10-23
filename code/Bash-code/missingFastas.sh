@@ -1,3 +1,7 @@
+# This code takes the list of the links to the genomes as input and identifies which are missing from the database
+
+# We need to perform this step as when downloading the links from BV-BRC database, some that don't have a corresponding
+# genome are downloaded as well, so we need to identify and remove them from our list
 
 outputfilename="$2"
 inputfilename="$1"

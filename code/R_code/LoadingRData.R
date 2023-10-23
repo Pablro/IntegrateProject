@@ -6,9 +6,14 @@
 #Relevant Note: In this way, you can access the RDATA whenever you need it.
 
 
+#<<<<<<< pablosImplementations
 #This should be your default directory
 #This is my case, remember to update to your work directory structure
 getwd() # so you can check
+#=======
+#Loading RData
+#This is my case, remember to update to your work directory structure
+#>>>>>>> main
 defdir="/Users/marshall/Documents/2ndYear"
 
 #Directory where csv file should be
