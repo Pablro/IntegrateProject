@@ -8,15 +8,15 @@
 #to be modify.
 
 #Marshall Code part 2
-#Small Dataset sampling method
+#Small Dataset sampling method- Sample 1
 #parameters:
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-smallSampleSelection<-function(filtered_data,working_directory,filename){
+smallSampleSelection1<-function(filtered_data,working_directory,filename){
+  set.seed(123)
   setwd(working_directory)
   # Randomly select 50 observations
-  set.seed(123)
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   small_random_sample <- filtered_data[sample(nrow(filtered_data), 50), ]
   for (i in 1:length(small_random_sample)){
@@ -24,17 +24,51 @@ smallSampleSelection<-function(filtered_data,working_directory,filename){
   }
   write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
-#Large Dataset sampling method
+#Small Dataset sampling method-Sample 2
+#parameters:
+#filtered data previously generated
+#working direcctory- default working directory.
+#filename- the user specifies the file names.
+smallSampleSelection2<-function(filtered_data,working_directory,filename){
+  set.seed(456)
+  setwd(working_directory)
+  # Randomly select 50 observations
+  filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
+  small_random_sample <- filtered_data[sample(nrow(filtered_data), 50), ]
+  for (i in 1:length(small_random_sample)){
+    small_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",small_random_sample[i],sep="/"),small_random_sample[i],sep="/"),"fna",sep = ".")
+  }
+  write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+}
+#Large Dataset sampling method-sample 1
 #Note: If sample size  it is too large an  error will occur. The possibility of decreasing the size
 #of the large data set is relevant. 
 #parameters:
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-largeSampleSelection<-function(filtered_data,working_directory,filename){
+largeSampleSelection1<-function(filtered_data,working_directory,filename){
   setwd(working_directory)
-  # Randomly select 400 observations
   set.seed(123)
+  # Randomly select 400 observations
+  filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
+  large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
+  for (i in 1:length(large_random_sample)){
+    large_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample[i],sep="/"),large_random_sample[i],sep="/"),"fna",sep = ".")
+  }
+  write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+}
+#Large Dataset sampling method-sample 2
+#Note: If sample size  it is too large an  error will occur. The possibility of decreasing the size
+#of the large data set is relevant. 
+#parameters:
+#filtered data previously generated
+#working direcctory- default working directory.
+#filename- the user specifies the file names.
+largeSampleSelection2<-function(filtered_data,working_directory,filename){
+  setwd(working_directory)
+  set.seed(456)
+  # Randomly select 400 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
   for (i in 1:length(large_random_sample)){
@@ -48,9 +82,9 @@ largeSampleSelection<-function(filtered_data,working_directory,filename){
 #filename- the user specifies the file names.
 #this will pass the whole dataset for filtering the missing fastas in Unix
 completedDatasetUnbalanceId<-function(totaldata,working_directory,filename){
+  set.seed(123)
   setwd(working_directory)
   # Retrieves all the ids for the dataset for further eliminating in bash the ones that do not have fasta file
-  set.seed(123)
   totaldata<-totaldata[, "Genome.ID", drop = FALSE]
   for (i in 1:length(totaldata[,1])){
     totaldata[i,]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",totaldata[i,],sep="/"),totaldata[i,],sep="/"),"fna",sep = ".")
