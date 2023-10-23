@@ -26,12 +26,6 @@ setwd(sourdir)
 load("Bacteroides.Rdata")
 load("Neisseria.Rdata")
 #Steps for collecting the data
-######1-First step filtering Missing fastas##################
-#The following line of code will generated a file with all ftp links for all(whole dataset) the ids of the select specie
-#First specie:Bacteroides
-completedDatasetUnbalanceId(bacterodata,defdir,"bacteroUnbalanceData.txt")
-#Second specie: Nesseria
-completedDatasetUnbalanceId(nessedata,defdir,"NesseUnbalanceData.txt")
 #Instructions
 ########
 #Now go to /bash-input-data-directory
