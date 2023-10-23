@@ -1,6 +1,6 @@
-#Relevant Note: This filter has an important role in trimming the data for further analysis. Discussions regarding optimality of the preprocessing approach can be seen in
+#Relevant Note: This filter has an important role in trimming the data for further analysis. Discussions regarding the optimality of the preprocessing approach can be seen in
 # the analysis: QualityPreprocessingExploration.R
-# Any further improvement to the optimality of the data preprocessing should imply modifying this file.
+# Any further improvement to the data preprocessing should imply modifying this file.
 #Marshall code: Part 1
 library(dplyr)
 #Filter for genomes which are public(can be downloaded their fasta)
@@ -29,6 +29,7 @@ filtered_data <- data %>%
 return(filtered_data)
 }
 #Evaluating the effect of the 3 sigma statistical approach for trimming the data without considering the median
+#This function is only used in QualityPreprocessingExploration.R
 qualityFilter3Sigma<- function(data,sigm){
   #Calculate the median number of contigs
   median_contigs <- median(data$Contigs)
@@ -53,9 +54,12 @@ qualityFilter3Sigma<- function(data,sigm){
 }
 #These methods looks to define a better statistical approach to filter based on the median.
 #Following the same assumptions of normality
-#Under upper limit. No lower limit because you can get a contig of 1 if you used Nanopore or long sequencing reads technologies.
+#Under upper limit.
 #How to work under normal assumptions for a median.
 #https://www.statology.org/confidence-interval-for-median/
+#This is actually a binomial confidence interval based on normality assumption.
+#Consulted in the book of:
+#Practical Nonparametric Statistics, 3rd Edition by W.J. Conover.
 
 qualityFilterProposed<- function(data,sigm){
   #Calculate the median number of contigs
@@ -78,6 +82,8 @@ qualityFilterProposed<- function(data,sigm){
         (Genome.Status == "Complete" |
            #based on: https://www.statology.org/confidence-interval-for-median/
            #adapted to one side confidence interval for the contigs feature.
+           #2.5 as z value because is equivalent to 99% of confidence. So I am still kind of in the 3sigma rule 
+           #for the three features.
            (Genome.Status == "WGS" & Contigs <=(n*0.5)+2.5*sqrt( n*0.5*(1-0.5))))
     )
   return(filtered_data)
