@@ -95,7 +95,7 @@ conda install -c conda-forge -c bioconda -c defaults mlst
 ### Run MLST
 
 ```bash
-mlst genomesDirectory/*
+mlst --csv genomesDirectory/* > mlstOutput.csv
 ```
 
 ## References
