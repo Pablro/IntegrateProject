@@ -97,6 +97,19 @@ conda install -c conda-forge -c bioconda -c defaults mlst
 ```bash
 mlst --csv genomesDirectory/* > mlstOutput.csv
 ```
+## Running CD-hit
+
+Check the user guide page 8 with http://www.bioinformatics.org/cd-hit/cd-hit-user-guide.pdf.
+
+According to the paper, set the parameter: word size “-n” 5, minimum identity “-T” 80%, minimum alignment length “-aL” 80%, all other settings default.
+
+### Run CD-hit
+```bash
+cd-hit -i fastafile -o outputfile -n 5 -c 0.8 -aL 0.8
+```
+-c sequence identity threshold
+
+-aL alignment coverage for the longer sequence
 
 ## References
 
