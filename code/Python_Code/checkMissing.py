@@ -6,10 +6,7 @@ with open('400_2.txt', 'r') as file:
 
 # List the files in the output300 folder
 downloaded_files = os.listdir('output400')
-num_downloaded_files = len(downloaded_files)
 
-# Print the count
-print(f"Number of downloaded files: {num_downloaded_files}")
 # Check which genomes are not downloaded
 not_downloaded = []
 for url in urls:
