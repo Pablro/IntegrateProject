@@ -43,10 +43,14 @@ missings1<-paste(sourdir,"bacteroMissing.txt",sep = "/")
 missing_ids1 <- readLines(missings1)
 missing_ids1 <- as.numeric(missing_ids1)
 filtered_data1 <- bacterodata[!bacterodata$Genome.ID %in% missing_ids1, ]
+# Identify duplicated Genome.IDs
+duplicated_ids <- duplicated(filtered_data1$Genome.ID)
+# Keep only the first occurrence of each unique Genome.ID
+data_unique <- filtered_data1[!duplicated_ids, ]
 new_data_file1=paste(defdir,"IntegrateProject/data/balanceData/Bacteroidefiltered.Rdata",sep="/")
-save(filtered_data1,file = new_data_file1)
+save(data_unique,file = new_data_file1)
 ######3-Third step quality filtering and sampling##################
-data1=qualityFilterProposed(filtered_data1,3)
+data1=qualityFilterProposed(data_unique,3)
 smallSampleSelection1(data1,defdir,"50bacterosample1.txt")
 smallSampleSelection2(data1,defdir,"50bacterosample2.txt")
 largeSampleSelection1(data1,defdir,"400bacterosample1.txt")

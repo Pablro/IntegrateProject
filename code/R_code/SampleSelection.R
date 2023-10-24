@@ -49,7 +49,7 @@ smallSampleSelection2<-function(filtered_data,working_directory,filename){
 #filename- the user specifies the file names.
 largeSampleSelection1<-function(filtered_data,working_directory,filename){
   setwd(working_directory)
-  set.seed(123)
+  set.seed(23)
   # Randomly select 400 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
@@ -67,7 +67,7 @@ largeSampleSelection1<-function(filtered_data,working_directory,filename){
 #filename- the user specifies the file names.
 largeSampleSelection2<-function(filtered_data,working_directory,filename){
   setwd(working_directory)
-  set.seed(456)
+  set.seed(55)
   # Randomly select 400 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
