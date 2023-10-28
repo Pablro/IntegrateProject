@@ -116,7 +116,7 @@ cat *.faa > filename.faa
 ### Run CD-hit
 This run CD-HIT is for building a CDS pangenome
 ```bash
-cd-hit -i fastafile -o outputfile -n 5 -c 0.8 -aL 0.8 -d 0
+cd-hit -i fastafile -o outputfile -M 0 -n 5 -c 0.8 -aL 0.8 -d 0
 ```
 -c sequence identity threshold
 
