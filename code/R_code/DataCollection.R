@@ -51,10 +51,7 @@ new_data_file1=paste(defdir,"IntegrateProject/data/balanceData/Bacteroidefiltere
 save(data_unique,file = new_data_file1)
 ######3-Third step quality filtering and sampling##################
 data1=qualityFilterProposed(data_unique,3)
-smallSampleSelection1(data1,defdir,"50bacterosample1.txt")
-smallSampleSelection2(data1,defdir,"50bacterosample2.txt")
-largeSampleSelection1(data1,defdir,"400bacterosample1.txt")
-largeSampleSelection2(data1,defdir,"400bacterosample2.txt")
+
 #Instructions:
 #Go to "bash-input-data" and transfer the above files to VSC account. Be sure to be on $VSC_DATA
 #Run the shell script "sequence-script.sh" to download the fasta files
@@ -75,10 +72,10 @@ new_data_file2 <- paste(defdir,"IntegrateProject/data/balanceData/Neisseriafilte
 save(filtered_data2,file = new_data_file2)
 ######3-Third step quality filtering and sampling##################
 data2=qualityFilterProposed(filtered_data2,3)
-smallSampleSelection1(data2,defdir,"50nessesample1.txt")
-smallSampleSelection2(data2,defdir,"50nessesample2.txt")
-largeSampleSelection1(data2,defdir,"400nessesample1.txt")
-largeSampleSelection2(data2,defdir,"400nessesample2.txt")
+smallSampleSelection1(data2,defdir,"50neisseria1_fna.txt","50neisseria1_faa.txt")
+smallSampleSelection2(data2,defdir,"50neisseria2_fna.txt","50neisseria2_faa.txt")
+largeSampleSelection1(data2,defdir,"400neisseria1_fna.txt","400neisseria1_faa.txt")
+largeSampleSelection2(data2,defdir,"400neisseria2_fna.txt","400neisseria2_faa.txt")
 #Instructions:
 #Go to "bash-input-data" and transfer the above files to VSC account. Be sure to be on $VSC_DATA
 #Run the shell script "sequence-script.sh" to download the fasta files

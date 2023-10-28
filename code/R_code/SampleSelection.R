@@ -13,32 +13,42 @@
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-smallSampleSelection1<-function(filtered_data,working_directory,filename){
+smallSampleSelection1<-function(filtered_data,working_directory,fna_name,faa_name){
   set.seed(123)
   setwd(working_directory)
   # Randomly select 50 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   small_random_sample <- filtered_data[sample(nrow(filtered_data), 50), ]
+  small_random_sample2 <- small_random_sample
   for (i in 1:length(small_random_sample)){
     small_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",small_random_sample[i],sep="/"),small_random_sample[i],sep="/"),"fna",sep = ".")
   }
-  write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",fna_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  for (i in 1:length(small_random_sample2)){
+    small_random_sample2[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",small_random_sample2[i],sep="/"),small_random_sample2[i],sep="/"),"PATRIC.faa",sep = ".")
+  }
+  write.table(small_random_sample2, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",faa_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
 #Small Dataset sampling method-Sample 2
 #parameters:
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-smallSampleSelection2<-function(filtered_data,working_directory,filename){
+smallSampleSelection2<-function(filtered_data,working_directory,fna_name,faa_name){
   set.seed(456)
   setwd(working_directory)
   # Randomly select 50 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   small_random_sample <- filtered_data[sample(nrow(filtered_data), 50), ]
+  small_random_sample2 <- small_random_sample
   for (i in 1:length(small_random_sample)){
     small_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",small_random_sample[i],sep="/"),small_random_sample[i],sep="/"),"fna",sep = ".")
   }
-  write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  write.table(small_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",fna_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  for (i in 1:length(small_random_sample2)){
+    small_random_sample2[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",small_random_sample2[i],sep="/"),small_random_sample2[i],sep="/"),"PATRIC.faa",sep = ".")
+  }
+  write.table(small_random_sample2, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",faa_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
 #Large Dataset sampling method-sample 1
 #Note: If sample size  it is too large an  error will occur. The possibility of decreasing the size
@@ -47,16 +57,21 @@ smallSampleSelection2<-function(filtered_data,working_directory,filename){
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-largeSampleSelection1<-function(filtered_data,working_directory,filename){
+largeSampleSelection1<-function(filtered_data,working_directory,fna_name,faa_name){
   setwd(working_directory)
   set.seed(23)
   # Randomly select 400 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
+  large_random_sample2<- large_random_sample
   for (i in 1:length(large_random_sample)){
     large_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample[i],sep="/"),large_random_sample[i],sep="/"),"fna",sep = ".")
   }
-  write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",fna_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  for (i in 1:length(large_random_sample2)){
+    large_random_sample2[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample2[i],sep="/"),large_random_sample2[i],sep="/"),"PATRIC.faa",sep = ".")
+  }
+  write.table(large_random_sample2, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",faa_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
 #Large Dataset sampling method-sample 2
 #Note: If sample size  it is too large an  error will occur. The possibility of decreasing the size
@@ -65,14 +80,20 @@ largeSampleSelection1<-function(filtered_data,working_directory,filename){
 #filtered data previously generated
 #working direcctory- default working directory.
 #filename- the user specifies the file names.
-largeSampleSelection2<-function(filtered_data,working_directory,filename){
+largeSampleSelection2<-function(filtered_data,working_directory,fna_name,faa_name){
   setwd(working_directory)
   set.seed(55)
   # Randomly select 400 observations
   filtered_data<-filtered_data[, "Genome.ID", drop = FALSE]
   large_random_sample <- filtered_data[sample(nrow(filtered_data), 400), ]
+  large_random_sample2<- large_random_sample
   for (i in 1:length(large_random_sample)){
     large_random_sample[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample[i],sep="/"),large_random_sample[i],sep="/"),"fna",sep = ".")
   }
-  write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",filename,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  write.table(large_random_sample, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",fna_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
+  for (i in 1:length(large_random_sample2)){
+    large_random_sample2[i]=paste(paste(paste("ftp://ftp.bvbrc.org/genomes",large_random_sample2[i],sep="/"),large_random_sample2[i],sep="/"),"PATRIC.faa",sep = ".")
+  }
+  write.table(large_random_sample2, file = paste(getwd(),paste("IntegrateProject/data/bash-input-data",faa_name,sep = "/"),sep = "/"), col.names = FALSE, row.names=FALSE,sep = "\t")
 }
+
