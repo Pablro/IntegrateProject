@@ -103,7 +103,7 @@ Check the user guide page 8 with http://www.bioinformatics.org/cd-hit/cd-hit-use
 
 According to the paper, set the parameter: word size “-n” 5, minimum identity “-T” 80%, minimum alignment length “-aL” 80%, all other settings default.
 ### Creating the merge file of the non redundant list
-Assumptions: All our downloaded data is assumed to be in a non redundant state. For which account there is no duplcated id nor missing id faa or fna.
+Assumptions: All our downloaded data is assumed to be in a non redundant state. This means there is no duplicated id nor missing id faa or fna file.
 
 **Go to the respective directory where all faa files**
 
