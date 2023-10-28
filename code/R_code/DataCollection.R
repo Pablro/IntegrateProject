@@ -51,7 +51,10 @@ new_data_file1=paste(defdir,"IntegrateProject/data/balanceData/Bacteroidefiltere
 save(data_unique,file = new_data_file1)
 ######3-Third step quality filtering and sampling##################
 data1=qualityFilterProposed(data_unique,3)
-
+smallSampleSelection1(data1,defdir,"50bacterosample1_fna.txt","50bacterosample_faa.txt")
+smallSampleSelection2(data1,defdir,"50bacterosample2_fna.txt","50bacterosample_faa.txt")
+largeSampleSelection1(data1,defdir,"400bacterosample1_fna.txt","400bacterosample_faa.txt")
+largeSampleSelection2(data1,defdir,"400bacterosample2_fna.txt","400bacterosample_faa.txt")
 #Instructions:
 #Go to "bash-input-data" and transfer the above files to VSC account. Be sure to be on $VSC_DATA
 #Run the shell script "sequence-script.sh" to download the fasta files
@@ -68,10 +71,13 @@ missings2<-paste(sourdir,"nesseMissing.txt",sep = "/")
 missing_ids2 <- readLines(missings2)
 missing_ids2 <- as.numeric(missing_ids2)
 filtered_data2 <- nessedata[!nessedata$Genome.ID %in% missing_ids2, ]
+duplicated_ids <- duplicated(filtered_data2$Genome.ID)
+# Keep only the first occurrence of each unique Genome.ID
+data_unique2 <- filtered_data2[!duplicated_ids, ]
 new_data_file2 <- paste(defdir,"IntegrateProject/data/balanceData/Neisseriafiltered.Rdata",sep="/")
-save(filtered_data2,file = new_data_file2)
+save(data_unique2,file = new_data_file2)
 ######3-Third step quality filtering and sampling##################
-data2=qualityFilterProposed(filtered_data2,3)
+data2=qualityFilterProposed(data_unique2,3)
 smallSampleSelection1(data2,defdir,"50neisseria1_fna.txt","50neisseria1_faa.txt")
 smallSampleSelection2(data2,defdir,"50neisseria2_fna.txt","50neisseria2_faa.txt")
 largeSampleSelection1(data2,defdir,"400neisseria1_fna.txt","400neisseria1_faa.txt")
