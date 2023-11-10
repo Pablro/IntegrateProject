@@ -168,7 +168,7 @@ bacteropropmatrix<-rbind(bacteropropmatrix.row1,bacteropropmatrix.row2,bacteropr
 colnames(bacteropropmatrix)<-c("1*sigma","2*sigma","3*sigma")
 rownames(bacteropropmatrix)<-c("AuthorsContigMedian_trimming","SigmaTrimming_NoConigTrim","Proposed_contigMedian_trimming")
 #How much data/genomes the filtering conserves for this species after filtering for each method
-bacteropropmatrix
+View(bacteropropmatrix)
 
 #Neisseria Meningitidis
 #Postfiltering
@@ -213,14 +213,14 @@ nessepropmatrix<-rbind(nessepropmatrix.row1,nessepropmatrix.row2,nessepropmatrix
 colnames(nessepropmatrix)<-c("1*sigma","2*sigma","3*sigma")
 rownames(nessepropmatrix)<-c("AuthorsContigMedian_trimming","SigmaTrimming_NoConigTrim","Proposed_contigMedian_trimming")
 #How much data/genomes the filtering conserves for this species after filtering for each method
-nessepropmatrix
+View(nessepropmatrix)
 
 #####
 #So in general more genome information is gain with the proposed method based on the assumtpion of normality.
 #rather than using the author default contig median trimming method.
 ####
 # What is the visual difference?
-par(mfcol=c(1,1))
+par(mfcol=c(1,2),mgp=c(2,1,0))
 #Bacteroides fragilis
 median1=median(bacterodata$Contigs)
 authorthreshold=2.5*median1 #suggest by the authors. Why 2.5 and not 3. for example?
@@ -232,7 +232,7 @@ n1=nrow(bacterodata)
 #around 99 confidence interval-still author value is used
 proposedthreshold=(n1*0.5)+2.5*sqrt( n1*0.5*(1-0.5))
 #what effect does the threshold has in the downstream analyis?
-barplot(bacterodata$Contigs,space=c(0,0)) #Does all low values contigs are okay? probably yes, depending in the sequencing technology used
+barplot(bacterodata$Contigs,space=c(0,0),main="Bacteroides fragilis",ylab = "nr contigs", xlab="sample") #Does all low values contigs are okay? probably yes, depending in the sequencing technology used
 index<- rep(median1,length(bacterodata$Contigs))
 index2<- rep(authorthreshold,length(bacterodata$Contigs))
 index3<- rep(proposedthreshold,length(bacterodata$Contigs))
@@ -255,14 +255,14 @@ n1=nrow(nessedata)
 proposedthreshold=(n1*0.5)+2.5*sqrt( n1*0.5*(1-0.5))
 proposedthreshold
 #what effect does the threshold has in the downstream analyis?
-barplot(nessedata$Contigs,space = c(0,0),ylim=c(0,1500)) #Does all low values contigs are okay? Yes
+barplot(nessedata$Contigs,space = c(0,0),ylim=c(0,1500),main="Neisseria meningitidis",ylab="nr contigs",xlab="sample") #Does all low values contigs are okay? Yes
 index<- rep(median1,length(nessedata$Contigs))
 index2<- rep(authorthreshold,length(nessedata$Contigs))
 index3<- rep(proposedthreshold,length(nessedata$Contigs))
 lines(index,col="red") #median
 lines(index2,col="green") #threshold author
 lines(index3,col="blue") #threshold proposed
-legend(x = "topright",legend = c("median", "Author threshold","proposed threshold"),lty = c(1,1,1),col = c("red","green","blue"),lwd = 0.5,cex=0.3)
+legend(x = "topright",legend = c("median", "Author threshold","proposed threshold"),lty = c(1,1,1),col = c("red","green","blue"),lwd = 0.5,cex=0.5)
 #This seems to be very large threshold but at least it preserve the genome information rather that trimming incorrectly.
 
 #Conclusion:
@@ -278,3 +278,4 @@ legend(x = "topright",legend = c("median", "Author threshold","proposed threshol
 #Also the proposed method is still build under normality assumptions. But it improve the authors contigs filter because it seems quite ambigous.
 # A unsuitable cutoff value means loosing valuable information (genomes) for further downstream analysis. How to account for good genomes selection
 # is still a prevailing question because we need to account for the population structure or the data distribution and the possible hidden biological concepts behind it.
+
