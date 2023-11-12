@@ -12,7 +12,7 @@ from pangenomix.pangenome import find_matching_genome_files, build_noncoding_pan
 from pangenomix.manage_extensions import change_url_extensions, rename_files_with_extension
 '''
 IMPORTANT note: check directory and file names when implementing for your samples.
-Here it is only implemented Neisseria 1  samples. Unzip all fasta files before starting.
+Here it is only implemented Neisseria 1  samples.
 restore your lmod environment which has cd-hit.
 '''
 if __name__ == '__main__':
@@ -50,8 +50,8 @@ if __name__ == '__main__':
 
 # MANUAL STEP: download the gff files before proceeding with wget. Follow Anna procedure.
 #Run once the following coment two lines script: Rename the .PATRIC.gff to .gff
-#rename_files_with_extension(mypath+"/data/fasta-files/NesseLarge1gff",".PATRIC.gff",".gff")
-#rename_files_with_extension(mypath+"/data/fasta-files/NesseSmall1gff",".PATRIC.gff",".gff")
+rename_files_with_extension(mypath+"/data/fasta-files/NesseLarge1gff",".PATRIC.gff",".gff")
+rename_files_with_extension(mypath+"/data/fasta-files/NesseSmall1gff",".PATRIC.gff",".gff")
 
 #matching files
 #50 sample

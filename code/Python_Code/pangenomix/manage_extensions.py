@@ -14,6 +14,8 @@ def change_url_extensions(input_file, output_file, old_extension, new_extension)
 
     with open(output_file_path, 'w') as out_file:
         out_file.writelines('\n'.join(modified_urls))
+        #This extra end of line will make possible to download all files. (Do not why)
+        out_file.writelines('\n')
 
 
 def rename_files_with_extension(folder_path, source_extension, target_extension):
