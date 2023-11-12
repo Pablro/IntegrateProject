@@ -31,6 +31,7 @@ nesse1ncRNApangenome50_T0A35
 nesse1ncRNApangenome50_T0A36
 nesse1ncRNApangenome50_T0A37
 nesse1ncRNApangenome50_T0A38
+nesse1ncRNApangenome50_T0A39
 nesse1ncRNApangenome50_T0A4
 nesse1ncRNApangenome50_T0A5
 nesse1ncRNApangenome50_T0A6
@@ -324,5 +325,6 @@ nesse1ncRNApangenome50_T9A1
 487.747
 487.779
 487.911
+487.933
 487.978
 935598.3

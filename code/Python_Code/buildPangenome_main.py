@@ -12,13 +12,14 @@ from pangenomix.pangenome import find_matching_genome_files, build_noncoding_pan
 from pangenomix.manage_extensions import change_url_extensions, rename_files_with_extension
 '''
 IMPORTANT note: check directory and file names when implementing for your samples.
-Here it is only implemented Neisseria 1  samples. Unzip all fasta files before starting.
+Here it is only implemented Neisseria 1  samples.
 restore your lmod environment which has cd-hit.
+The script assumes you have a directory in the repo called "fasta-files" which inside the data directory. Here
+there should be all fasta files.
 '''
 if __name__ == '__main__':
-    #STEP 1: unzip fasta files
     #STEP 2: type "cd" command to the repository name to update "pwd" or "os.getcwd()". Which is the current directory
-    #it should be inside the repo
+    #the path  should be inside the repo
     #you can also adjust my path manually as you prefer.
 
     #STEP 3: Define the default directory to run almost automatically.
@@ -48,10 +49,10 @@ if __name__ == '__main__':
     #400 sample
     change_url_extensions(mypath+"/data/bash-input-data/400neisseria1_faa.txt","400neisseria1_gff.txt",".faa",".gff")
 
-# MANUAL STEP: download the gff files before proceeding with wget. Follow Anna procedure.
-#Run once the following coment two lines script: Rename the .PATRIC.gff to .gff
-#rename_files_with_extension(mypath+"/data/fasta-files/NesseLarge1gff",".PATRIC.gff",".gff")
-#rename_files_with_extension(mypath+"/data/fasta-files/NesseSmall1gff",".PATRIC.gff",".gff")
+# MANUAL STEP: download the gff files with wget before proceeding. Follow Anna procedure.
+
+rename_files_with_extension(mypath+"/data/fasta-files/NesseLarge1gff",".PATRIC.gff",".gff")
+rename_files_with_extension(mypath+"/data/fasta-files/NesseSmall1gff",".PATRIC.gff",".gff")
 
 #matching files
 #50 sample
