@@ -89,7 +89,7 @@ fittedlargencRNA<- binomixEstimate(LargencRNAPanMatNesseOne, K.range = 3:20)
 print(fittedsmallncRNA$BIC.tbl)
 print(fittedlargencRNA$BIC.tbl)
 #Small Dataset
-ncomp <- 3
+ncomp <- 4
 fig6 <- fittedsmallncRNA$Mix.tbl %>% 
   filter(Components == ncomp) %>% 
   ggplot() +
