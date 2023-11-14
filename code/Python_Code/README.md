@@ -119,8 +119,10 @@ And then pip install the module
 pip install 'rpy2==2.9.4'
 ```
 If another version >2.9.4,like the updated version of 3.5.14,it will have another code structure and the workflow will not work unless you update the functions of rpy2 package to this version.
+
 **Workflow**:
 - Step 1: Ensure you have the input files (pangenome files or pangenome directory with the pangenome files).
 - Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
-- Step 3: Run the script 
+- Step 3: Run the script
+  
 **Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
