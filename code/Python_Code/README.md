@@ -101,9 +101,9 @@ ml #list your modules, check for CD-Hit
 ```
 - Step 1: Activate CD-HIT
 - Step 2: Ensure you have the input files (fasta files or fasta directory with the fasta files).
-- Step 3: Modify directory names, file names, and paths according to your storage structure.
-- Step 4: Run the script and use script comments as guidance. (only works if you clone the repo, comments are based on this assumption. Yet my serve as a reference.)
-- 
+- Step 3: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
+- Step 4: Run the script and use script comments as guidance. (only works if you clone the repo, comments are based on this assumption. Yet these comments might serve as a reference.)
+  
 ## Converting to R dataframe: *toR_main.py* Script
 **Important Note:** For this workflow I modified the file *sparse_utils.py* with a function call *to_dataFrame_Robject* here in the return value a function named *pandas2ri.py2ri*
 is called. This function is strongly dependent on the version of the module *rpy2* version you install. We presume that version 2.9.4 will not have a conflict with the code above. However for version >2.9.4 the name *py2ri* has changed apparently to *py2rpy* (A lot of warnings might throw afterward). Hence using version 2.9.4 of *rpy2* is recommended.
@@ -119,4 +119,8 @@ And then pip install the module
 pip install 'rpy2==2.9.4'
 ```
 If another version >2.9.4,like the updated version of 3.5.14,it will have another code structure and the workflow will not work unless you update the functions of rpy2 package to this version.
-
+**Workflow**:
+- Step 1: Ensure you have the input files (pangenome files or pangenome directory with the pangenome files).
+- Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
+- Step 3: Run the script 
+**Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
