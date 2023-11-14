@@ -2,7 +2,7 @@
 ## content
 *pangenomix* directory: Tools for pangenome construction, analysis, and comparison. Derived from amr_pangenome, working towards Python2+3 compatibility.
 Extracted from Hyun code.
-- *checkMissing.py* and *duplicate.py*: For manual debugging when downloading fastas and looking for missing ids or possible duplicates (if required, sometimes useful). high -- throughput detection is implemented in missingFastas.sh(missing id) and within DataCollection.R for duplicate inspections.
+- *checkMissing.py* and *duplicate.py*: For manual debugging when downloading fastas and looking for missing ids or possible duplicates (if required, sometimes useful). high-throughput detection is implemented in missingFastas.sh(missing id) and within DataCollection.R for duplicate inspections.
 - *buildPangenome_main.py*: semiautomatic script for building CDS pangenome. The step-by-step explanation is within the script.
 - *toR_main.py*: Transforms presence-absence matrix to Rdataframe for further analysis with micropan package.
 
