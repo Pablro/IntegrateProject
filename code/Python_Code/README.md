@@ -1,7 +1,13 @@
-### pangenomix
-Tools for pangenome construction, analysis, and comparison. Derived from amr_pangenome, working towards Python2+3 compatibility.
+### README
+## content
+*pangenomix* directory: Tools for pangenome construction, analysis, and comparison. Derived from amr_pangenome, working towards Python2+3 compatibility.
 Extracted from Hyun code.
+- *checkMissing.py* and *duplicate.py*: For manual debugging when downloading fastas and looking for missing ids or possible duplicates (if required, sometimes useful). high -- throughput detection is implemented in missingFastas.sh(missing id) and within DataCollection.R for duplicate inspections.
+- *buildPangenome_main.py*: semiautomatic script for building CDS pangenome. The step-by-step explanation is within the script.
+- *toR_main.py*: Transforms presence-absence matrix to Rdataframe for further analysis with micropan package.
 
+
+### Instructions
 # Building pangenome
 
 ## Conda setup
@@ -30,7 +36,7 @@ conda install -c bioconda cd-hit
 cd pangenomix/pangenomix
 ```
 
-## Python
+## Approach 1: Python
 
 ### Start a python session
 
@@ -73,6 +79,7 @@ Example
 ```bash
 build_cds_pangenome(genome_faa_paths=faa_files_50, output_dir="directory/to/cd-hit-output/50_bactero_cdhit", name="50bactero")
 ```
+## Approach 2: buildPangenome_main.py
 
 
 
