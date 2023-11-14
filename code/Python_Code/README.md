@@ -106,7 +106,7 @@ ml #list your modules, check for CD-Hit
 - 
 ## Converting to R dataframe: *toR_main.py* Script
 **Important Note:** For this workflow I modified the file *sparse_utils.py* with a function call *to_dataFrame_Robject* here in the return value a function named *pandas2ri.py2ri*
-is called. This function is strongly dependent on the version of the module *rpy2* version you install. We presume that version 2.9.4 will not have a conflict with the code above. However for version >2.9.4 the name *py2ri* has changed apparently to ** (A lot of warnings might throw afterward). Hence using version 2.9.4 of *rpy2* is recommended.
+is called. This function is strongly dependent on the version of the module *rpy2* version you install. We presume that version 2.9.4 will not have a conflict with the code above. However for version >2.9.4 the name *py2ri* has changed apparently to *py2rpy* (A lot of warnings might throw afterward). Hence using version 2.9.4 of *rpy2* is recommended.
 
 Second conda installation for *rpy2* might show you some problems. So might be that in case of failure, you tried with alternative links mentioned there (I recommend this because conda can also manage its desinstallation and it is within your workspace environment). Last option, if conda fails to install the module then activate your conda environment:
 
