@@ -2,7 +2,7 @@
 This script build the pangenome without running in python terminal
 Some points need to be run manually or once. This are specified below.
 The procedure in the code is the one discuss by Anna.
-Hopefully you can add your samples to complete the code.
+You can rename files and directories to your local conventions.
 '''
 import os
 from pangenomix.pangenome import build_cds_pangenome
@@ -13,7 +13,7 @@ from pangenomix.manage_extensions import change_url_extensions, rename_files_wit
 '''
 IMPORTANT note: check directory and file names when implementing for your samples.
 Here it is only implemented Neisseria 1  samples.
-restore your lmod environment which has cd-hit.
+restore your lmod environment which has cd-hit(or ensure cd-hit is active).
 The script assumes you have a directory in the repo called "fasta-files" which inside the data directory. Here
 there should be all fasta files.
 '''
@@ -67,9 +67,3 @@ build_noncoding_pangenome(genome_data=nesse50matching_files, output_dir=mypath+"
 #400 sample
 build_noncoding_pangenome(genome_data=nesse400matching_files, output_dir=mypath+"/data/pangenome-data/NesseLarge1/ncRNA",name="nesse1ncRNApangenome400",cdhit_args={'-M':0,'-n':5,'-c':0.8,'-aL':0.8})
 
-#Neisseria sample 2
-
-#Bacteroides sample 1
-
-
-#Bacteroides sample 2
