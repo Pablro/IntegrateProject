@@ -116,5 +116,5 @@ And then pip install the module
 ```python
 pip install 'rpy2==2.9.4'
 ```
-If another version >2.9.4 like the updated version of 3.5.14 this has another code structure. And the workflow will not work unless you update the functions of rpy2 package to this version.
+If another version >2.9.4,like the updated version of 3.5.14,it will have another code structure and the workflow will not work unless you update the functions of rpy2 package to this version.
 
