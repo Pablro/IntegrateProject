@@ -35,7 +35,7 @@ conda install -c bioconda cd-hit
 cd pangenomix/pangenomix
 ```
 
-## Approach 1: Python
+## Approach 1: Python terminal
 
 ### Start a python session
 
