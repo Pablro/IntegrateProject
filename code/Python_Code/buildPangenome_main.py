@@ -39,31 +39,3 @@ if __name__ == '__main__':
     build_cds_pangenome(genome_faa_paths=faa_files_50, output_dir=mypath+"/data/pangenome-data/NesseSmall1/CDS", name="nesse1pangenome50",cdhit_args={'-M':0,'-n':5,'-c':0.8,'-aL':0.8})
     #cds pangenome for 400
     build_cds_pangenome(genome_faa_paths=faa_files_400, output_dir=mypath+"/data/pangenome-data/NesseLarge1/CDS", name="nesse1pangenome400",cdhit_args={'-M':0,'-n':5,'-c':0.8,'-aL':0.8})
-    
-    #STEP 5: ncRNA pangenome construction.
-    #Add the code for your samples and check for your files and directories names.
-
-    #Pangenome workflow 2:non coding pangenome Analysis
-    #50 sample
-    change_url_extensions(mypath+"/data/bash-input-data/50neisseria1_faa.txt","50neisseria1_gff.txt",".faa",".gff")
-    #400 sample
-    change_url_extensions(mypath+"/data/bash-input-data/400neisseria1_faa.txt","400neisseria1_gff.txt",".faa",".gff")
-
-# MANUAL STEP: download the gff files with wget before proceeding. Follow Anna procedure.
-
-rename_files_with_extension(mypath+"/data/fasta-files/NesseLarge1gff",".PATRIC.gff",".gff")
-rename_files_with_extension(mypath+"/data/fasta-files/NesseSmall1gff",".PATRIC.gff",".gff")
-
-#matching files
-#50 sample
-nesse50matching_files=find_matching_genome_files(mypath+"/data/fasta-files/NesseSmall1gff",mypath+"/data/fasta-files/NesseSmall1fna")
-#400 sample
-nesse400matching_files=find_matching_genome_files(mypath+"/data/fasta-files/NesseLarge1gff",mypath+"/data/fasta-files/NesseLarge1fna")
-
-#Building pangenome
-#cd-hit settings according to discussed in documentation by Yanlin
-#50 sample
-build_noncoding_pangenome(genome_data=nesse50matching_files, output_dir=mypath+"/data/pangenome-data/NesseSmall1/ncRNA",name="nesse1ncRNApangenome50",cdhit_args={'-M':0,'-n':5,'-c':0.8,'-aL':0.8})
-#400 sample
-build_noncoding_pangenome(genome_data=nesse400matching_files, output_dir=mypath+"/data/pangenome-data/NesseLarge1/ncRNA",name="nesse1ncRNApangenome400",cdhit_args={'-M':0,'-n':5,'-c':0.8,'-aL':0.8})
-
