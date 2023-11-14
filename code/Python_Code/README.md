@@ -78,8 +78,11 @@ Example
 ```bash
 build_cds_pangenome(genome_faa_paths=faa_files_50, output_dir="directory/to/cd-hit-output/50_bactero_cdhit", name="50bactero")
 ```
-## Approach 2: buildPangenome_main.py
+## Approach 2: *buildPangenome_main.py* Script 
 
+
+
+## Converting to R dataframe: *toR_main.py* Script
 
 
 
