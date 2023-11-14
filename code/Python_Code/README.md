@@ -26,7 +26,7 @@ conda activate ./integrated-project-env/
 ### Load cd-hit with Lmod environment, alternatively install cd-hit with bioconda 
  ```bash
 ml savelist #list your environments
-ml restore *envname* #restore your environent
+ml restore *envname* #restore your environment
 ml #list your modules, check for CD-Hit
  ```
 
