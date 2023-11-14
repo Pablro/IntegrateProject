@@ -1,4 +1,4 @@
-### README
+# README
 ## Content
 *pangenomix* directory: Tools for pangenome construction, analysis, and comparison. Derived from amr_pangenome, working towards Python2+3 compatibility.
 Extracted from Hyun code. Some adaptations are added for further analysis with R.
@@ -7,10 +7,9 @@ Extracted from Hyun code. Some adaptations are added for further analysis with R
 - *toR_main.py*: Transforms presence-absence matrix to Rdataframe for further analysis with micropan package.
 
 
-### Instructions
-# Building pangenome
+## Instructions: Building pangenome
 
-## Conda setup
+### Conda setup
 
 Before creating or activating the conda environment always run the following:
 
@@ -24,7 +23,7 @@ export PATH="${VSC_DATA}/miniconda3/bin:${PATH}"
 conda activate ./integrated-project-env/ 
 ```
 
-### Install cd-hit with bioconda
+### Load cd-hit with Lmod environment, alternatively install cd-hit with bioconda 
 
 ```bash
 conda install -c bioconda cd-hit
@@ -48,10 +47,10 @@ You might have to type python3 instead of python
 ### Import necessary modules
 
 ```bash
-import pangenome_analysis
-import pangenome
-from pangenome import list_faa_files
-from pangenome import build_cds_pangenome
+import pangenomix.pangenome_analysis
+import pangenomix.pangenome
+from pangenomix.pangenome import list_faa_files
+from pangenomix.pangenome import build_cds_pangenome
 ```
 
 ### Create lists of faa files 
