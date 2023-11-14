@@ -1,6 +1,5 @@
 '''
 This script build the pangenome without running in python terminal
-Some points need to be run manually or once. This are specified below.
 The procedure in the code is the one discuss by Anna.
 You can rename files and directories to your local conventions.
 '''
