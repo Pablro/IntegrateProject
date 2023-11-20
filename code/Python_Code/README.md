@@ -126,6 +126,42 @@ If another version >2.9.4,like the updated version of 3.5.14,it will have anothe
 - Step 3: Run the script
   
 **Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
+# Fit Heaps Law
+
+### Start a python session
+
+```bash
+python
+```
+You might have to type python3 instead of python
+
+### Import necessary modules
+
+```python
+import pangenome_analysis, sparse_utils; from pangenome_analysis import estimate_pan_core_size; from pangenome_analysis import fit_heaps_by_iteration
+```
+
+### Read the gene.npz file
+
+```python
+df_genes = sparse_utils.read_lsdf("path/to/gene.npz")
+```
+
+### Create df_pan_core 
+
+df_pan_core is a DataFrame with pangenome + core genome size curve estimates as columns, iterations as index.
+
+Side note: we can experiment with different numbers here, the number stands for the number of randomizations. 
+
+```python
+df_pan_core=estimate_pan_core_size(df_genes, 1)
+```
+
+### Fit Heaps Law to each iteration
+
+```python
+fit_heaps = fit_heaps_by_iteration(df_pan_core)
+```
 
 # EggNOG-maper
 
