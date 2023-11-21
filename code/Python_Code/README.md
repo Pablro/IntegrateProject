@@ -127,7 +127,7 @@ If another version >2.9.4,like the updated version of 3.5.14,it will have anothe
   
 **Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
 # Fit Heaps Law
-
+## Approach 1: Python terminal
 ### Start a python session
 
 ```bash
@@ -162,6 +162,10 @@ df_pan_core=estimate_pan_core_size(df_genes, 1)
 ```python
 fit_heaps = fit_heaps_by_iteration(df_pan_core)
 ```
+## Approach 2: run the *pangenomesize_main.py* script
+- Step 1: Ensure you have the input files (npz files for the 50 and 400 sample).
+- Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
+- Step 3: Run the script and use script comments as guidance.
 
 # EggNOG-maper
 
