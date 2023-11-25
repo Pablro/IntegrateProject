@@ -89,6 +89,7 @@ def find_highest_expression(row_counts_df, gene_allele_rows_df):
     # Create a DataFrame from the output data list
     output_df = pd.DataFrame(output_data)
 
+
     return output_df
 
 
@@ -111,16 +112,20 @@ def identify_gene_allele_rows(gene_npz_label_file, allele_npz_label_file):
     merged_df = pd.merge(allele_df, gene_df, on='gene_name', how='left')
 
     # Create a column 'allele_index' as a list of allele indices
-    merged_df['allele_index'] = merged_df.groupby('gene')['allele_name'].transform(lambda x: x.index.tolist())
-
+    #.transform(lambda x: x.index.tolist())
+    # 
+    #.transform(lambda x: x.index.tolist())
+    merged_df['allele_index']= merged_df.groupby(['allele_name'])['gene'].transform(lambda x: x.index.tolist())
     # Group by gene and aggregate the 'allele_index' column as a list
     result_df = merged_df.groupby('gene')['allele_index'].agg(list).reset_index()
 
     result_df['gene'] = result_df['gene'].astype(int)
 
     result_df['allele_index'] = result_df['allele_index'].apply(lambda x: [int(i) for i in x])
+    
 
     print("\nIdentified all alleles per genome")
+    
 
     return result_df
 
@@ -136,12 +141,14 @@ def count_allele_occurence(allele_npz_file):
 
     # Create a DataFrame to count occurrences of each row index
     df = pd.DataFrame({'allele_index': row_indices, 'col': col_indices})
+  
 
     # Add a column 'count' representing the number of occurrences for each row index
-    df['count'] = df.groupby('allele_index').transform('size')
+    df['count'] = df.groupby('allele_index')['col'].transform('size')
 
     # Drop duplicate rows to keep unique row indices
     df_unique = df.drop_duplicates(subset=['allele_index', 'count'])
+
 
     # Remove the 'col' column
     df_unique = df_unique.drop(columns=['col'])
