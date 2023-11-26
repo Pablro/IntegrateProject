@@ -17,7 +17,7 @@ if __name__ == '__main__':
     #Calculate pangenome size
     df_pan_core=estimate_pan_core_size(df_genes, 1)
     print("pangenome size result:")
-    print(df_pan_core)
+    print(df_pan_core[['Pan50','Core50']])
     #Applies Heaps Law
     fit_heaps = fit_heaps_by_iteration(df_pan_core)
     print("heaps law result:")
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     #Calculate pangenome size
     df_pan_core=estimate_pan_core_size(df_genes, 1)
     print("pangenome size result:")
-    print(df_pan_core)
+    print(df_pan_core[['Pan400','Core400']])
     #Applies Heaps Law
     fit_heaps = fit_heaps_by_iteration(df_pan_core)
     print("heaps law result:")
