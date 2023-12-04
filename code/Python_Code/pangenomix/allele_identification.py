@@ -17,11 +17,14 @@ def create_alleles_fasta(allele_npz_file, gene_npz_label_file, allele_npz_label_
 
     highest_expression_names = find_allele_names(highest_expression_rows, allele_npz_label_file)
 
-    filter_sequences(input_faa, highest_expression_names, output_faa)
+    filtered_sequences=filter_sequences(input_faa, highest_expression_names)
+    createFastafile(filtered_sequences,output_faa)
+    
 
 
 
-def filter_sequences(input_faa, highest_expression_names, output_faa):
+
+def filter_sequences(input_faa, highest_expression_names):
     # Creates fasta file with alleles that have the highest expression levels
 
     # Extract the allele names from the DataFrame
@@ -33,11 +36,14 @@ def filter_sequences(input_faa, highest_expression_names, output_faa):
         allele_name = record.id.split('|')[0]  # Extract allele name from the record ID
         if allele_name in allele_names:
             filtered_sequences.append(record)
-
-    print("\nCreated a FASTA file with all the highly expressed alleles. Success!")
-
+            
+    return filtered_sequences
+def createFastafile(filtered_sequences,output_faa):
     # Write the filtered sequences to the output FAA file
+    print("\nCreated a FASTA file with all the highly expressed alleles. Success!")
     SeqIO.write(filtered_sequences, output_faa, 'fasta')
+        
+
 
 
 

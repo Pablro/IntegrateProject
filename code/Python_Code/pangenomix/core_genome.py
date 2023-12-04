@@ -2,12 +2,14 @@ import numpy as np
 import pandas as pd
 from Bio import SeqIO
 import ast
-from pangenomix.allele_identification import filter_sequences, find_allele_names,find_highest_expression,identify_gene_allele_rows,count_allele_occurence
+from pangenomix.allele_identification import filter_sequences, find_allele_names,find_highest_expression,identify_gene_allele_rows,count_allele_occurence,createFastafile
 
 
 
-def create_core_genes_fasta(allele_npz_file, allele_npz_label_file, gene_npz_file, gene_npz_label_file, input_faa,genomes_num, output_faa):
+def create_core_genes(allele_npz_file, allele_npz_label_file, gene_npz_file, gene_npz_label_file, input_faa,genomes_num,output_faa,fasta_omit=False):
+    #parameters:
 
+    #fasta_omit:Default is false: to create a fasta file. Otherwise set it to true.
     # This function runs the whole pipeline that allows the user to obtain a list
     # of the most highly expressed alleles of each gene in the pangenome
 
@@ -25,9 +27,10 @@ def create_core_genes_fasta(allele_npz_file, allele_npz_label_file, gene_npz_fil
 
     highest_expression_names = find_allele_names(highest_expression_rows, allele_npz_label_file)
 
-    filter_sequences(input_faa, highest_expression_names, output_faa)
-
-
+    filtered_sequences=filter_sequences(input_faa, highest_expression_names)
+    if fasta_omit==False:
+        createFastafile(filtered_sequences,output_faa)
+    return filtered_sequences
 
 
 def subset_genes_alleles_pairs(allele_occurence_count, highest_gene_expression_rows):

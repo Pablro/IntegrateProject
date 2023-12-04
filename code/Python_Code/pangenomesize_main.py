@@ -36,7 +36,7 @@ if __name__ == '__main__':
     print("heaps law result:")
     print(fit_heaps)
 
-#Repeat  and adapt code for your filename(this is a must) and path names and directories names(if you are working with manual setting).
+#Repeat and adapt code for your filename(this is a must) and path names and directories names(if you are working with manual setting).
 #Neisseria sample 2
 #Bacteroides sample 1
 #Bacteroides sample 2
