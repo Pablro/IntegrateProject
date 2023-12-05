@@ -162,11 +162,6 @@ df_pan_core=estimate_pan_core_size(df_genes, 1)
 ```python
 fit_heaps = fit_heaps_by_iteration(df_pan_core)
 ```
-## Approach 2: run the *pangenomesize_main.py* script
-- Step 1: Ensure you have the input files (npz files for the 50 and 400 sample).
-- Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
-- Step 3: Run the script and use script comments as guidance.
-
 # EggNOG-maper
 
 ## Prepare input fasta file
