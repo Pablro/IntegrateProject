@@ -185,7 +185,7 @@ def to_dataFrame_Robject(pandasdata):
     '''
     return pandas2ri.py2ri(pandasdata)
     
-class LightSparseDataFrame:
+class LightSparseDataFrame():
     
     def __init__(self, index, columns, data):
         '''
@@ -329,9 +329,44 @@ class LightSparseDataFrame:
         for c, column in enumerate(self.columns):
             # CSC column -> dense column -> SparseArray
             col_vector = data_csc[:,c].toarray()[:,0]
-            sp_arrays[column] = pd.SparseArray(col_vector)
+            sp_arrays[column] = pd.arrays.SparseArray(col_vector)
             sp_arrays[column].fill_value = np.nan
         return pd.DataFrame(data=sp_arrays, index=self.index)
+    @property
+    def iloc(self):
+        class IlocAccessor:
+            def __init__(self, parent):
+                self.parent = parent
+
+            def __getitem__(self, key):
+                if isinstance(key, tuple):
+                    i_indices, i_columns = key
+                else:
+                    i_indices, i_columns = key, slice(None)
+
+                return self.parent.islice(i_indices, i_columns)
+
+        return IlocAccessor(self)
+    
+    @property
+    def values(self):
+        return self.data.toarray()
+    
+    @property
+    def sp_index(self):
+        return self.index
+
+    @property
+    def npoints(self):
+        return self.shape[0]
+
+    @property
+    def indices(self):
+        return self.data.row
+
+    @property
+    def sp_values(self):
+        return self.data.data
         
 
 

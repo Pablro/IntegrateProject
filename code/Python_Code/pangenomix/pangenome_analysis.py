@@ -71,7 +71,7 @@ def estimate_pan_core_size(df_genes, num_iter, log_batch=-1):
     '''
     num_genes, num_strains = df_genes.shape
     print('Converting DataFrame to matrix...')
-    gene_data = pangenomix.sparse_utils.sparse_arrays_to_spmatrix(df_genes)
+    gene_data = df_genes.data
     gene_data = gene_data.T.tocsr() # now strain x cluster
     pan_genomes = np.zeros((num_iter, num_strains)) # estimated pan-genome curve per iteration
     core_genomes = np.zeros((num_iter, num_strains)) # estimated core-genome curve per iteration
@@ -344,7 +344,7 @@ def compute_beta_binomial_core_genome(df_genes, frac_recovered=0.999, df_counts=
     ''' Get gene frequency distribution '''
     if df_counts is None:
         n_genes, n_genomes = df_genes.shape
-        gene_mat = pangenomix.sparse_utils.sparse_arrays_to_sparse_matrix(df_genes)
+        gene_mat = pangenomix.sparse_utils.sparse_arrays_to_spmatrix(df_genes)
         df_counts = pd.Series(collections.Counter(np.array(gene_mat.sum(axis=1))[:,0]))
     else:
         n_genomes = max(df_counts.index)

@@ -126,3 +126,110 @@ If another version >2.9.4,like the updated version of 3.5.14,it will have anothe
 - Step 3: Run the script
   
 **Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
+# Fit Heaps Law
+## Approach 1: Python terminal
+### Start a python session
+
+```bash
+python
+```
+You might have to type python3 instead of python
+
+### Import necessary modules
+
+```python
+import pangenome_analysis, sparse_utils; from pangenome_analysis import estimate_pan_core_size; from pangenome_analysis import fit_heaps_by_iteration
+```
+
+### Read the gene.npz file
+
+```python
+df_genes = sparse_utils.read_lsdf("path/to/gene.npz")
+```
+
+### Create df_pan_core 
+
+df_pan_core is a DataFrame with pangenome + core genome size curve estimates as columns, iterations as index.
+
+Side note: we can experiment with different numbers here, the number stands for the number of randomizations. 
+
+```python
+df_pan_core=estimate_pan_core_size(df_genes, 1)
+```
+
+### Fit Heaps Law to each iteration
+
+```python
+fit_heaps = fit_heaps_by_iteration(df_pan_core)
+```
+## Approach 2: run the *pangenomesize_main.py* script
+- Step 1: Ensure you have the input files (npz files for the 50 and 400 sample).
+- Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
+- Step 3: Run the script and use script comments as guidance.
+
+# EggNOG-maper
+
+## Prepare input fasta file
+
+### Important note
+
+You might run into issues if you don't have some libraries installed, so you might want to pip install them beforehand. 
+
+```bash
+pip install numpy
+pip install pandas
+pip install Bio
+pip install ast
+```
+
+### Start a python session
+
+```bash
+python
+```
+You might have to type python3 instead of python
+
+### Import necessary modules
+
+```python
+import allele_identification; from allele_identification import create_alleles_fasta 
+```
+
+### Define all input files
+
+Make sure to specify the directory for the output file, sorry for this, it is just the first version, so it's not perfect. 
+
+```python
+allele_npz_file = "path/to/allele.npz" 
+
+gene_npz_label_file = "path/to/gene.npz.labels.txt" 
+
+allele_npz_label_file = "path/to/allele.npz.labels.txt" 
+
+input_faa = "path/to/nr.faa" 
+
+output_faa = "path/to/_highly_expressed.faa " 
+```
+
+### Create the fasta file
+
+```python
+create_alleles_fasta(allele_npz_file, gene_npz_label_file, allele_npz_label_file, input_faa, output_faa) 
+```
+
+## Run the EggNog-mapper online tool
+
+Follow the graphical instructions below.
+
+![image](https://github.com/AnnaLew/pangenomix/assets/57362758/bfeca0ea-0f68-4351-bb7f-2146e5e651b0)
+
+![image](https://github.com/AnnaLew/pangenomix/assets/57362758/81dbe9f5-653b-46a8-975d-95d87db0261d)
+
+![image](https://github.com/AnnaLew/pangenomix/assets/57362758/9c0d72c8-9388-4149-a2cb-921ad4d7b094)
+
+After the job finishes running, download the csv and excel files.
+
+![image](https://github.com/AnnaLew/pangenomix/assets/57362758/3e897ab9-a597-4a9c-8692-aabd2dee60d7)
+
+
+
