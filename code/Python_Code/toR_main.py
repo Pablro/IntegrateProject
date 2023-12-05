@@ -42,38 +42,93 @@ if __name__ == '__main__':
     robjects.r("save(LargePanMatNesseOne, file='{}')".format("400Nesse1panmatrixCDS.RData"))
     os.chdir(defdir)
 
-    #For ncRNA pangenome
-    #Small dataset
-    pangenomedata=defdir+"/pangenome-data/NesseSmall1/ncRNA/nesse1ncRNApangenome50_strain_by_noncoding_gene.npz"
-    pangenomeheaders=defdir+"/pangenome-data/NesseSmall1/ncRNA/nesse1ncRNApangenome50_strain_by_noncoding_gene.npz.labels.txt"
-    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
-    nessedata=nessedata.transpose()
-    pddata=nessedata.to_sparse_arrays()
-    #We need to convert from sparse matrix to dense matrix to avoid conflict
-    dense_df = pddata.sparse.to_dense()
-    rdata=to_dataFrame_Robject(dense_df)
-    robjects.r.assign("smallncRNAPanMatNesseOne",rdata)
-    os.chdir(defdir+"/Rdata")
-    robjects.r("save(smallncRNAPanMatNesseOne, file='{}')".format("50Nesse1panmatrixncRNA.RData"))
-    os.chdir(defdir)
-
-    #Large dataset
-    pangenomedata=defdir+"/pangenome-data/NesseLarge1/ncRNA/nesse1ncRNApangenome400_strain_by_noncoding_gene.npz"
-    pangenomeheaders=defdir+"/pangenome-data/NesseLarge1/ncRNA/nesse1ncRNApangenome400_strain_by_noncoding_gene.npz.labels.txt"
-    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
-    nessedata=nessedata.transpose()
-    pddata=nessedata.to_sparse_arrays()
-    #We need to convert from sparse matrix to dense matrix to avoid conflict
-    dense_df = pddata.sparse.to_dense()
-    rdata=to_dataFrame_Robject(dense_df)
-    robjects.r.assign("LargencRNAPanMatNesseOne",rdata)
-    os.chdir(defdir+"/Rdata")
-    robjects.r("save(LargencRNAPanMatNesseOne, file='{}')".format("400Nesse1panmatrixncRNA.RData"))
-    os.chdir(defdir)
+  
 
 #Just copy and adapt(file and directories names) code above
 #Neisseria Sample 2
+    #For CDS pangenome
+    #Small dataset
+    pangenomedata=defdir+"/pangenome-data/NesseSmall2/CDS/output50_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/NesseSmall2/CDS/output50_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("smallPanMatNesseTwo",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(smallPanMatNesseTwo, file='{}')".format("50Nesse2panmatrixCDS.RData"))
+    os.chdir(defdir)
 
+    #Large Dataset
+    pangenomedata=defdir+"/pangenome-data/NesseLarge2/CDS/output400_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/NesseLarge2/CDS/output400_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("LargePanMatNesseTwo",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(LargePanMatNesseTwo, file='{}')".format("400Nesse2panmatrixCDS.RData"))
+    os.chdir(defdir)
 #Bacteroides sample 1
+    #For CDS pangenome
+    #Small dataset
+    pangenomedata=defdir+"/pangenome-data/BacteroSmall1/CDS/50bactero_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/BacteroSmall1/CDS/50bactero_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("smallPanMatBacteroOne",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(smallPanMatBacteroOne, file='{}')".format("50Bactero1panmatrixCDS.RData"))
+    os.chdir(defdir)
 
+    #Large Dataset
+    pangenomedata=defdir+"/pangenome-data/BacteroLarge1/CDS/400bactero_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/BacteroLarge1/CDS/400bactero_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("LargePanMatBacteroOne",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(LargePanMatBacteroOne, file='{}')".format("400Bactero1panmatrixCDS.RData"))
+    os.chdir(defdir)
 #Bacteroides sample 2
+    #For CDS pangenome
+    #Small dataset
+    pangenomedata=defdir+"/pangenome-data/BacteroSmall2/CDS/Bacteroides2_50_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/BacteroSmall2/CDS/Bacteroides2_50_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("smallPanMatBacteroTwo",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(smallPanMatBacteroTwo, file='{}')".format("50Bactero2panmatrixCDS.RData"))
+    os.chdir(defdir)
+
+    #Large Dataset
+    pangenomedata=defdir+"/pangenome-data/BacteroLarge2/CDS/Bacteroides2_400_strain_by_gene.npz"
+    pangenomeheaders=defdir+"/pangenome-data/BacteroLarge2/CDS/Bacteroides2_400_strain_by_gene.npz.labels.txt"
+    nessedata=read_lsdf(pangenomedata, label_file=pangenomeheaders)
+    nessedata=nessedata.transpose()
+    pddata=nessedata.to_sparse_arrays()
+    #We need to convert from sparse matrix to dense matrix to avoid conflict
+    dense_df = pddata.sparse.to_dense()
+    rdata=to_dataFrame_Robject(dense_df)
+    robjects.r.assign("LargePanMatBacteroTwo",rdata)
+    os.chdir(defdir+"/Rdata")
+    robjects.r("save(LargePanMatBacteroTwo, file='{}')".format("400Bactero2panmatrixCDS.RData"))
+    os.chdir(defdir)
