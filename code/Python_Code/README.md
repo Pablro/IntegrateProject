@@ -333,10 +333,10 @@ grep -c "^>" file_core.faa
 ```
 ### Generating pie plot for the parts of the pangenome
 We summarise the results according to the following thresholds:
-core genes= genome_num probability> 99%
-soft core genes= 95%<genome_num probability<99%
-shell genes= 15%<genome_num probability<95%
-cloud genes= genome_num probability <15%
+* core genes= genome_num probability> 99%
+* soft core genes= 95%<genome_num probability<99%
+* shell genes= 15%<genome_num probability<95%
+* cloud genes= genome_num probability <15%
 **Workflow**:
 - Step 1: Ensure you have the input files (pangenome files or pangenome directory with the pangenome files).
 - Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
