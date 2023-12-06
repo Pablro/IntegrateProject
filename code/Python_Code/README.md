@@ -56,10 +56,10 @@ You might have to type python3 instead of python
 ### Import necessary modules
 
 ```bash
-import pangenomix.pangenome_analysis
-import pangenomix.pangenome
-from pangenomix.pangenome import list_faa_files
-from pangenomix.pangenome import build_cds_pangenome
+import pangenome_analysis
+import pangenome
+from pangenome import list_faa_files
+from pangenome import build_cds_pangenome
 ```
 
 ### Create lists of faa files 
@@ -123,11 +123,11 @@ If another version >2.9.4,like the updated version of 3.5.14,it will have anothe
 **Workflow**:
 - Step 1: Ensure you have the input files (pangenome files or pangenome directory with the pangenome files).
 - Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
-- Step 3: Run the script
+- Step 3: Run the script *toR_main.py*
   
 **Important** Files of the pangenome matrix are required. Specifically all *filename_strain_by_gene.npz* and *filename.strain_by_gene.npz.labels.txt*. Locate this files and modified the code accordingly (to the respective names).
 # Fit Heaps Law
-## Approach 1: Python terminal
+## Approach : Python terminal
 ### Start a python session
 
 ```bash
@@ -150,17 +150,33 @@ df_genes = sparse_utils.read_lsdf("path/to/gene.npz")
 ### Create df_pan_core 
 
 df_pan_core is a DataFrame with pangenome + core genome size curve estimates as columns, iterations as index.
+Iterations are set to 100 here.
 
 Side note: we can experiment with different numbers here, the number stands for the number of randomizations. 
 
 ```python
-df_pan_core=estimate_pan_core_size(df_genes, 1)
+df_pan_core=estimate_pan_core_size(df_genes, 100)
 ```
 
-### Fit Heaps Law to each iteration
+### Calculate the Mean of 100 iterations and plot
+Do this immediately after iterations as each time a new run will give different results.
+```python
+import plot; from plot import calculate_mean
+Mean = calculate_mean(df_pan_core, jpgName)
+```
+
+### Fit Heaps Law to the mean value of iteration
 
 ```python
-fit_heaps = fit_heaps_by_iteration(df_pan_core)
+fit_heaps = fit_heaps_by_iteration(Mean)
+```
+
+### Export the result to csv
+Save the result of heaps law!
+Do this if you want to have the results as csv format.
+```python
+df_pan_core.to_csv("path/to/.csv")
+fit_heaps.to_csv("path/to/.csv")
 ```
 # EggNOG-maper
 
@@ -226,5 +242,92 @@ After the job finishes running, download the csv and excel files.
 
 ![image](https://github.com/AnnaLew/pangenomix/assets/57362758/3e897ab9-a597-4a9c-8692-aabd2dee60d7)
 
+# Core and accessory genome 
+
+This code will allow you to extract the core and accessory pangenomes 
+
+### Important note
+
+You might run into issues if you don't have some libraries installed, so you might want to pip install them beforehand. 
+
+```bash
+pip install numpy
+pip install pandas
+pip install Bio
+pip install ast
+```
+
+### Start a python session
+
+```bash
+python
+```
+You might have to type python3 instead of python
+
+### Import necessary modules
+
+```python
+import core_genome; from core_genome import create_core_genes_fasta 
+```
+
+### Define all input files
+
+Make sure to specify the directory for the output file, sorry for this, it is just the first version, so it's not perfect. 
+
+```python
+allele_npz_file = "path/to/allele.npz" 
+
+allele_npz_label_file = "path/to/allele.npz.labels.txt"
+
+gene_npz_file = "path/to/gene.npz"
+
+gene_npz_label_file = "path/to/gene.npz.labels.txt"
+
+input_faa = "path/to/nr.faa"
+
+genomes_num = number_of_your_genomes
+
+output_faa = "path/to/_core.faa " 
+```
+
+### Very important note
+
+genomes_num variable allows you to decide what in which percentage of genomes you want your genomes to be found. E.g. if you consider core genes the genes present in all the genomes, then set it to 400 in case you have 400 genomes and to 50 in case you have 50 genomes. In our case I want you to run it for the numbers/percentages below.
+
+For 50 genome set:
+
+* 100% - 50
+* 98% - 49
+* 96% - 48 
+* 94% - 47
+* 16% - 8
+
+For 400 genome set:
+
+* 100% - 400
+* 99% - 396
+* 98% - 392
+* 96% - 384
+* 95% - 380
+* 94% - 376
+* 16% - 64
+* 15% - 60
+
+Also, have in mind that you need to change the name of output file each time, so that you keep track of the percentages.
+
+
+### Create the fasta file
+
+```python
+create_core_genes_fasta(allele_npz_file, allele_npz_label_file, gene_npz_file, gene_npz_label_file, input_faa, genomes_num, output_faa)
+```
+
+### Count the number of genes in each fasta file
+
+To count the number of genes in each fasta file, you need to go to the location of the fasta file and then use the following command:
+
+```bash
+grep -c "^>" file_core.faa
+```
 
 
