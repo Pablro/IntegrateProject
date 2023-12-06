@@ -5,6 +5,8 @@ Extracted from Hyun code. Some adaptations are added for further analysis with R
 - *checkMissing.py* and *duplicate.py*: For manual debugging when downloading fastas and looking for missing ids or possible duplicates (if required, sometimes useful). high-throughput detection is implemented in missingFastas.sh(missing id) and within DataCollection.R for duplicate inspections.
 - *buildPangenome_main.py*: semiautomatic script for building CDS pangenome. The step-by-step explanation is within the script.
 - *toR_main.py*: Transforms presence-absence matrix to Rdataframe for further analysis with micropan package.
+- *core_genome_Pieplot*: prints a pie plot belonging to the parts of the pangenome.
+- *eggNog_main.py*: semiautomatic script for running eggNog analysis. The step by step explanation is within the script.
 
 
 ## Instructions: Building pangenome
@@ -329,5 +331,15 @@ To count the number of genes in each fasta file, you need to go to the location 
 ```bash
 grep -c "^>" file_core.faa
 ```
+### Generating pie plot for the parts of the pangenome
+We summarise the results according to the following thresholds:
+core genes= genome_num probability> 99%
+soft core genes= 95%<genome_num probability<99%
+shell genes= 15%<genome_num probability<95%
+cloud genes= genome_num probability <15%
+**Workflow**:
+- Step 1: Ensure you have the input files (pangenome files or pangenome directory with the pangenome files).
+- Step 2: Modify directory names, file names, and paths(if you did not clone the repo) according to your storage structure.
+- Step 3: Run the script *core_genome_Pieplot.py*
 
 
