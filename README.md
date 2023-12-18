@@ -1,5 +1,5 @@
 # Bioinformatics Integrated Project
-This repository describes how to perform comparative pangenome analysis. It is based on the Hyun workflow (Hyun et al., 2022). 
+This repository attempts to describes how to perform comparative pangenome analysis. It is based on the Hyun workflow (Hyun et al., 2022). 
 
 The workflow goes as follows.
 
